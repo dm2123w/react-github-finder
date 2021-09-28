@@ -2,8 +2,8 @@
 
 /* Global Styles */
 :root {
-    --primary-color: #7709dd;
-    --dark-color: #333333;
+    --primary-color: #7b1db1;
+    --dark-color: #63178f;
     --light-color: #f4f4f4;
     --danger-color: #dc3545;
     --success-color: #28a745;
@@ -30,10 +30,6 @@ body {
 a {
     color: var(--primary-color);
     text-decoration: none;
-}
-
-a:hover {
-    color: #666;
 }
 
 ul {
@@ -207,6 +203,7 @@ img {
     padding: 0.4rem 1.3rem;
     font-size: 1rem;
     border: none;
+    border-radius: 10px;
     cursor: pointer;
     margin-right: 0.5rem;
     transition: opacity 0.2s ease-in;
