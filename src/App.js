@@ -7,7 +7,10 @@ class App extends Component {
     render() {
         return (
             <>
-                <Navbar /> <Users />
+                <Navbar />{" "}
+                <div className="container">
+                    <Users />
+                </div>
             </>
         );
     }
