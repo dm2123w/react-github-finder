@@ -1,10 +1,12 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import axios from "axios";
 import "./App.css";
 import Navbar from "./components/layout/Navbar";
 import Users from "./components/users/Users";
 import Search from "./components/users/Search";
 import { Alert } from "./components/layout/Alert";
+import { About } from "./components/pages/About";
 
 class App extends Component {
     state = {
@@ -27,26 +29,44 @@ class App extends Component {
 
     setAlert = (message, type) => {
         this.setState({ alert: { message, type } });
+        setTimeout(() => this.setState({ alert: null }), 5000);
     };
 
     render() {
         return (
-            <>
-                <Navbar />{" "}
-                <div className="container">
-                    <Alert alert={this.state.alert} />
-                    <Search
-                        searchUsers={this.searchUsers}
-                        clearUsers={this.clearUsers}
-                        showClear={this.state.users.length > 0 ? true : false}
-                        setAlert={this.setAlert}
-                    />
-                    <Users
-                        users={this.state.users}
-                        loading={this.state.loading}
-                    />
+            <Router>
+                <div className="App">
+                    <Navbar />{" "}
+                    <div className="container">
+                        <Alert alert={this.state.alert} />
+                        <Switch>
+                            <Route
+                                exact
+                                path="/"
+                                render={(props) => (
+                                    <>
+                                        <Search
+                                            searchUsers={this.searchUsers}
+                                            clearUsers={this.clearUsers}
+                                            showClear={
+                                                this.state.users.length > 0
+                                                    ? true
+                                                    : false
+                                            }
+                                            setAlert={this.setAlert}
+                                        />
+                                        <Users
+                                            users={this.state.users}
+                                            loading={this.state.loading}
+                                        />
+                                    </>
+                                )}
+                            ></Route>
+                            <Route exact path="/about" component={About} />
+                        </Switch>
+                    </div>
                 </div>
-            </>
+            </Router>
         );
     }
 }
