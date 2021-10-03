@@ -27,6 +27,7 @@ export class User extends Component {
             following,
             public_repos,
             public_gists,
+            company,
             hireable,
         } = this.props.user;
 
@@ -53,6 +54,59 @@ export class User extends Component {
                             alt=""
                             style={{ width: "150px" }}
                         />
+                        <h1>{name}</h1>
+                        <p>Location: {location}</p>
+                    </div>
+                    <div>
+                        <ul>
+                            <li>
+                                {login && (
+                                    <>
+                                        <strong>Username: </strong>
+                                        {login}
+                                    </>
+                                )}
+                            </li>
+                            <li>
+                                {company && (
+                                    <>
+                                        <strong>Company: </strong>
+                                        {company}
+                                    </>
+                                )}
+                            </li>
+                            <li>
+                                {blog && (
+                                    <>
+                                        <strong>Blog: </strong>
+                                        {blog}
+                                    </>
+                                )}
+                            </li>
+                        </ul>
+                        {bio && (
+                            <>
+                                <h3>Bio:</h3>
+                                <p>{bio}</p>
+                            </>
+                        )}
+                        <a href={html_url} className="btn btn-primary my-1">
+                            Visit GitHub Profile
+                        </a>
+                    </div>
+                </div>
+                <div className="card text-center">
+                    <div className="badge badge-primary">
+                        Followers: {followers}
+                    </div>
+                    <div className="badge badge-success">
+                        Following: {following}
+                    </div>
+                    <div className="badge badge-danger">
+                        Public Repos: {public_repos}
+                    </div>
+                    <div className="badge badge-light">
+                        Public Gists: {public_gists}
                     </div>
                 </div>
             </>
