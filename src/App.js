@@ -17,15 +17,6 @@ const App = () => {
     const [loading, setLoading] = useState(false);
     const [alert, setAlert] = useState(null);
 
-    const searchUsers = async (text) => {
-        setLoading(true);
-        const res = await axios.get(
-            `https://api.github.com/search/users?q=${text}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
-        );
-        setUsers(res.data.items);
-        setLoading(false);
-    };
-
     const getUser = async (username) => {
         setLoading(true);
         const res = await axios.get(
@@ -41,11 +32,6 @@ const App = () => {
             `https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
         );
         setRepos(res.data);
-        setLoading(false);
-    };
-
-    const clearUsers = () => {
-        setUsers([]);
         setLoading(false);
     };
 
@@ -67,18 +53,8 @@ const App = () => {
                                 path="/"
                                 render={(props) => (
                                     <>
-                                        <Search
-                                            searchUsers={searchUsers}
-                                            clearUsers={clearUsers}
-                                            showClear={
-                                                users.length > 0 ? true : false
-                                            }
-                                            setAlert={showAlert}
-                                        />
-                                        <Users
-                                            users={users}
-                                            loading={loading}
-                                        />
+                                        <Search setAlert={showAlert} />
+                                        <Users />
                                     </>
                                 )}
                             ></Route>
